@@ -16,3 +16,9 @@ temp/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Logs
+logs/
+
+# Files
+csdn_article.md
