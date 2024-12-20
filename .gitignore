@@ -7,8 +7,6 @@ venv/
 # IDE
 .idea/
 .vscode/
-*.swp
-*.swo
 
 # Project specific
 .env

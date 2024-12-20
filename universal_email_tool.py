@@ -1,5 +1,5 @@
 import os
-from typing import Optional, List, Union, Type
+from typing import Optional, Type
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
