@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/langchain_banner.png" alt="LangChain Tools Banner" width="600px">
-
 # 🛠️ LangChain 工具集
 
 **使用 LangChain 构建强大的 AI 驱动工具套件**
