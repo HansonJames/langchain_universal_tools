@@ -12,6 +12,8 @@ venv/
 .env
 generated_notes/
 temp/
+no_upload/
+promotional_articles/
 
 # OS specific
 .DS_Store
@@ -20,5 +22,5 @@ Thumbs.db
 # Logs
 logs/
 
-# Files
-csdn_article.md
+# Other Files
+

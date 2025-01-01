@@ -1,128 +1,141 @@
-<div align="center">
+# 通用LangChain工具集
 
-# 🛠️ LangChain 工具集
+基于LangChain的通用工具集，用于各种任务。
 
-**使用 LangChain 构建强大的 AI 驱动工具套件**
+## 功能特点
 
-[English](README.md) | [简体中文](README_zh.md)
+### 1. 通用邮件工具
+- 支持多种格式邮件发送（纯文本、HTML）
+- 支持附件功能
+- 邮件阅读和摘要生成
+- 支持多个邮件服务提供商（QQ、163、阿里云）
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://www.python.org)
-[![LangChain](https://img.shields.io/badge/LangChain-0.3.13-green?logo=chainlink)](https://langchain.com)
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-orange?logo=openai)](https://openai.com)
-[![License](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
+### 2. 通用思维导图工具
+- 自动根据主题生成思维导图
+- 支持多种思维导图格式（FreeMind、OPML、XMind、MindManager）
+- 智能内容分析和组织
+- 简单易用的API接口
 
-</div>
+## 安装
 
-## 📬 通用邮件助手
-
-langchain官方有一个gmail邮箱工具，但是因为操作起来很复杂，所以本人开发了一个通用智能邮箱工具，允许您使用自然语言命令发送、阅读和总结邮件等。
-
-### ✨ 特性
-
-- 🤖 自然语言邮件管理界面
-- 🧠 AI驱动的理解和响应
-- 🚀 多邮件服务商支持（QQ、163、阿里云）
-- 📊 智能邮件分类和总结
-
-### 🚀 快速开始
-
-1. 安装依赖：
 ```bash
+git clone https://github.com/HansonJames/langchain_universal_tools.git
+cd langchain_universal_tools
 pip install -r requirements.txt
 ```
 
-2. 复制 `.env.example` 到 `.env` 并配置：
-```bash
-cp .env.example .env
-# 编辑 .env 文件，设置 OpenAI API 密钥和邮箱配置
+## 配置
+
+创建`.env`文件，添加以下内容：
+
+```env
+# OpenAI和SerpAPI设置
+OPENAI_API_KEY=你的OpenAI API密钥
+SERPAPI_API_KEY=你的SerpAPI密钥
+
+# 邮件服务设置
+EMAIL_USE=QQ  # QQ、163或ALIYUN
+EMAIL_CONFIGS={
+    "QQ": {
+        "smtp_host": "smtp.qq.com",
+        "smtp_port": 465,
+        "imap_host": "imap.qq.com",
+        "username": "你的QQ邮箱",
+        "password": "你的邮箱密码"
+    }
+}
 ```
 
-3. 在代码中使用：
+## 使用方法
+
+### 邮件工具
+
 ```python
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from universal_email_tool import UniversalEmailTool, UniversalEmailToolReading
 
-# 初始化工具和模型
+# 初始化工具
 tools = [UniversalEmailTool(), UniversalEmailToolReading()]
-llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
+
+# 初始化语言模型
+llm = ChatOpenAI(
+    temperature=0,
+    model_name="gpt-4o"
+)
 
 # 创建代理
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant that processes email requests, read and summarize emails."),
-    ("human", "{input}"),
-    MessagesPlaceholder(variable_name="agent_scratchpad"),
-])
 agent = create_openai_functions_agent(llm, tools, prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-# 功能示例
-# 1. 发送简单邮件
-agent_executor.invoke({
-    "input": "发封邮件感谢张三参加会议"
+# 发送邮件
+result = agent_executor.invoke({
+    "input": "向example@qq.com发送一封主题为'测试'，内容为'你好'的邮件"
 })
 
-# 2. 发送带抄送的HTML邮件
-agent_executor.invoke({
-    "input": "发送HTML邮件到zhang@example.com，抄送到team@example.com，标题为'项目更新'"
-})
-
-# 3. 发送带附件的邮件
-agent_executor.invoke({
-    "input": "给zhang@example.com发送一封邮件，附上report.pdf文件"
-})
-
-# 4. 读取并总结邮件
-agent_executor.invoke({
-    "input": "读取并总结我最近的3封邮件"
-})
-
-# 5. 邮件分类
-agent_executor.invoke({
-    "input": "显示我最近30封邮件并进行分类"
+# 读取邮件
+result = agent_executor.invoke({
+    "input": "阅读并总结我最近的3封邮件"
 })
 ```
 
-## 🗺️ 发展规划
+### 思维导图工具
 
-### 当前工具
-- 📬 通用邮件助手
-  - 自然语言邮件管理
-  - 多服务商支持
-  - 智能总结功能
+```python
+from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from xmind_tool import UniversalMindMapTool, UniversalMindMapToolReading
 
-### 即将推出
-- 📊 数据分析助手
-  - 自然语言数据查询
-  - 自动化可视化
-  - 洞察生成
+# 初始化工具
+tools = [UniversalMindMapTool(), UniversalMindMapToolReading()]
 
-- 📝 文档处理工具
-  - 多格式文档处理
-  - 智能内容提取
-  - 自动化总结
+# 初始化语言模型
+llm = ChatOpenAI(
+    temperature=0,
+    model_name="gpt-4o"
+)
 
-- 💬 聊天界面构建器
-  - 自定义聊天机器人创建
-  - 多平台部署
-  - 对话流程设计
+# 创建代理
+agent = create_openai_functions_agent(llm, tools, prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-- 🔍 研究助手
-  - 文献综述自动化
-  - 引用管理
-  - 研究总结
+# 生成思维导图
+topic = "编程语言对比分析"
+result = agent_executor.invoke({
+    "input": f"请生成一个关于'{topic}'的思维导图。"
+})
+```
 
-### 未来愿景
-- 构建全面的AI驱动工具套件
-- 创建工具间的无缝集成
-- 开发统一的工具界面
-- 支持企业级应用
+## 输出格式
 
-## 🤝 贡献
+### 邮件工具
+- 纯文本邮件
+- HTML格式邮件
+- 支持附件
+- 邮件阅读和摘要
 
-欢迎贡献！查看我们的[贡献指南](CONTRIBUTING.md)了解更多信息。
+### 思维导图工具
+- FreeMind格式 (.mm)
+- OPML格式 (.opml)
+- XMind格式 (.xmind)
+- MindManager格式 (.mmap)
 
-## 📄 许可证
+所有思维导图文件都保存在`output/mindmap`目录下。
 
-本项目采用 Apache License 2.0 许可证 - 详见 [LICENSE](LICENSE) 文件。
+## 系统要求
+
+- Python 3.8+
+- OpenAI API密钥
+- SerpAPI密钥（用于思维导图生成）
+- 邮件服务账号
+- 所需Python包（见requirements.txt）
+
+## 许可证
+
+MIT许可证
+
+## 贡献
+
+欢迎提交Pull Request！

@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<opml version="2.0">
+  <head>
+    <title>个人健康生活指南</title>
+  </head>
+  <body>
+    <outline text="个人健康生活指南">
+      <outline text="身体健康">
+        <outline text="健康饮食">
+          <outline text="均衡营养"/>
+          <outline text="控制热量摄入"/>
+          <outline text="多样化食物选择"/>
+        </outline>
+        <outline text="规律运动">
+          <outline text="每周至少150分钟中等强度运动"/>
+          <outline text="结合有氧和力量训练"/>
+          <outline text="保持运动习惯"/>
+        </outline>
+        <outline text="戒烟限酒">
+          <outline text="完全戒烟"/>
+          <outline text="适度饮酒"/>
+          <outline text="了解酒精对健康的影响"/>
+        </outline>
+      </outline>
+      <outline text="心理健康">
+        <outline text="减轻压力">
+          <outline text="冥想和放松技巧"/>
+          <outline text="时间管理"/>
+          <outline text="寻求社交支持"/>
+        </outline>
+        <outline text="情绪管理">
+          <outline text="识别和表达情绪"/>
+          <outline text="建立积极的思维模式"/>
+          <outline text="寻求专业帮助"/>
+        </outline>
+      </outline>
+      <outline text="社会健康">
+        <outline text="建立良好的人际关系">
+          <outline text="积极沟通"/>
+          <outline text="参与社交活动"/>
+          <outline text="建立支持网络"/>
+        </outline>
+        <outline text="社区参与">
+          <outline text="志愿服务"/>
+          <outline text="参与社区活动"/>
+          <outline text="关注公共事务"/>
+        </outline>
+      </outline>
+      <outline text="环境健康">
+        <outline text="保持清洁卫生">
+          <outline text="勤洗手"/>
+          <outline text="科学佩戴口罩"/>
+          <outline text="保持社交距离"/>
+        </outline>
+        <outline text="环境保护">
+          <outline text="减少污染"/>
+          <outline text="节约资源"/>
+          <outline text="支持环保政策"/>
+        </outline>
+      </outline>
+      <outline text="智力健康">
+        <outline text="持续学习">
+          <outline text="阅读和学习新知识"/>
+          <outline text="参加培训和课程"/>
+          <outline text="保持好奇心"/>
+        </outline>
+        <outline text="脑力锻炼">
+          <outline text="解谜和游戏"/>
+          <outline text="学习新技能"/>
+          <outline text="保持思维活跃"/>
+        </outline>
+      </outline>
+    </outline>
+  </body>
+</opml>

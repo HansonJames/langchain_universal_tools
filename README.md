@@ -1,128 +1,143 @@
-<div align="center">
+# Universal LangChain Tools
 
-# 🛠️ LangChain Tools Collection
+A collection of universal tools based on LangChain for various tasks.
 
-**Building a suite of powerful AI-powered tools with LangChain**
+[中文文档](README_zh.md)
 
-[English](README.md) | [简体中文](README_zh.md)
+## Features
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)](https://www.python.org)
-[![LangChain](https://img.shields.io/badge/LangChain-0.3.13-green?logo=chainlink)](https://langchain.com)
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-orange?logo=openai)](https://openai.com)
-[![License](https://img.shields.io/badge/License-Apache%202.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
+### 1. Universal Email Tool
+- Send emails with various formats (plain text, HTML)
+- Support attachments
+- Read and summarize emails
+- Multiple email service providers support (QQ, 163, Aliyun)
 
-</div>
+### 2. Universal Mind Map Tool
+- Generate mind maps from any topic automatically
+- Support multiple mind map formats (FreeMind, OPML, XMind, MindManager)
+- Intelligent content analysis and organization
+- Easy to use with simple API
 
-## 📬 Universal Email Assistant
+## Installation
 
-Langchain has an official Gmail tool, but due to its complexity, I have developed a universal smart email tool that allows you to use natural language commands to send, read, and summarize emails.
-
-### ✨ Features
-
-- 🤖 Natural language interface for email management
-- 🧠 AI-powered understanding and response
-- 🚀 Multiple email provider support (QQ, 163, Aliyun)
-- 📊 Smart email categorization and summarization
-
-### 🚀 Quick Start
-
-1. Install dependencies:
 ```bash
+git clone https://github.com/HansonJames/langchain_universal_tools.git
+cd langchain_universal_tools
 pip install -r requirements.txt
 ```
 
-2. Copy `.env.example` to `.env` and configure your settings:
-```bash
-cp .env.example .env
-# Edit .env with your OpenAI API key and email settings
+## Configuration
+
+Create a `.env` file with the following content:
+
+```env
+# OpenAI and SerpAPI settings
+OPENAI_API_KEY=your_openai_api_key
+SERPAPI_API_KEY=your_serpapi_api_key
+
+# Email service settings
+EMAIL_USE=QQ  # QQ, 163, or ALIYUN
+EMAIL_CONFIGS={
+    "QQ": {
+        "smtp_host": "smtp.qq.com",
+        "smtp_port": 465,
+        "imap_host": "imap.qq.com",
+        "username": "your_qq_email",
+        "password": "your_email_password"
+    }
+}
 ```
 
-3. Use in your code:
+## Usage
+
+### Email Tool
+
 ```python
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from universal_email_tool import UniversalEmailTool, UniversalEmailToolReading
 
-# Initialize tools and model
+# Initialize tools
 tools = [UniversalEmailTool(), UniversalEmailToolReading()]
-llm = ChatOpenAI(temperature=0, model_name="gpt-4o")
 
-# Create agent
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant that processes email requests, read and summarize emails."),
-    ("human", "{input}"),
-    MessagesPlaceholder(variable_name="agent_scratchpad"),
-])
+# Initialize the language model
+llm = ChatOpenAI(
+    temperature=0,
+    model_name="gpt-4o"
+)
+
+# Create the agent
 agent = create_openai_functions_agent(llm, tools, prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-# Example Features
-# 1. Send a simple email
-agent_executor.invoke({
-    "input": "Send an email thanking John for the meeting"
+# Send email
+result = agent_executor.invoke({
+    "input": "Send an email to example@qq.com with subject 'Test' and content 'Hello'"
 })
 
-# 2. Send HTML email with CC
-agent_executor.invoke({
-    "input": "Send HTML email to john@example.com, CC to team@example.com, with title 'Project Update'"
-})
-
-# 3. Send email with attachment
-agent_executor.invoke({
-    "input": "Send an email to john@example.com with the report.pdf attachment"
-})
-
-# 4. Read and summarize recent emails
-agent_executor.invoke({
-    "input": "Read and summarize my last 3 emails"
-})
-
-# 5. Categorize emails
-agent_executor.invoke({
-    "input": "Show my last 30 emails and categorize them"
+# Read emails
+result = agent_executor.invoke({
+    "input": "Read and summarize my recent 3 emails"
 })
 ```
 
-## 🗺️ Roadmap
+### Mind Map Tool
 
-### Current Tools
-- 📬 Universal Email Assistant
-  - Email management through natural language
-  - Multi-provider support
-  - Smart summarization
+```python
+from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from xmind_tool import UniversalMindMapTool, UniversalMindMapToolReading
 
-### Upcoming Tools
-- 📊 Data Analysis Assistant
-  - Natural language data querying
-  - Automated visualization
-  - Insight generation
+# Initialize tools
+tools = [UniversalMindMapTool(), UniversalMindMapToolReading()]
 
-- 📝 Document Processing Tool
-  - Multi-format document handling
-  - Smart content extraction
-  - Automated summarization
+# Initialize the language model
+llm = ChatOpenAI(
+    temperature=0,
+    model_name="gpt-4o"
+)
 
-- 💬 Chat Interface Builder
-  - Custom chatbot creation
-  - Multi-platform deployment
-  - Conversation flow design
+# Create the agent
+agent = create_openai_functions_agent(llm, tools, prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-- 🔍 Research Assistant
-  - Literature review automation
-  - Citation management
-  - Research summarization
+# Generate mind map
+topic = "Programming Languages Comparison"
+result = agent_executor.invoke({
+    "input": f"Please generate a mind map about '{topic}'."
+})
+```
 
-### Future Vision
-- Building a comprehensive suite of AI-powered tools
-- Creating seamless integrations between tools
-- Developing a unified interface for all tools
-- Supporting enterprise-level applications
+## Output Formats
 
-## 🤝 Contributing
+### Email Tool
+- Plain text emails
+- HTML formatted emails
+- Support for attachments
+- Email reading and summarization
 
-Contributions are welcome! Check out our [Contributing Guide](CONTRIBUTING.md) for more information.
+### Mind Map Tool
+- FreeMind (.mm)
+- OPML (.opml)
+- XMind (.xmind)
+- MindManager (.mmap)
 
-## 📄 License
+All mind map files are saved in the `output/mindmap` directory.
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+## Requirements
+
+- Python 3.8+
+- OpenAI API key
+- SerpAPI key (for mind map generation)
+- Email service account
+- Required Python packages (see requirements.txt)
+
+## License
+
+MIT License
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.

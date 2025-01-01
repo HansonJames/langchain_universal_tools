@@ -1,6 +1,23 @@
-html2text==2024.2.26
-langchain==0.3.13
-pydantic==2.10.4
-python-dotenv==1.0.1
-langchain-openai==0.2.14
+# Core dependencies
+langchain>=0.3.13
+langchain-community>=0.3.13
+langchain-openai>=0.2.14
+python-dotenv>=1.0.1
+pydantic>=2.10.4
 
+# Search functionality
+google-search-results>=2.4.3
+
+# Email functionality
+imapclient>=3.0.0
+email-validator>=2.1.1
+beautifulsoup4>=4.12.3
+html2text>=2024.1.1
+
+# XML and data handling
+xmltodict>=0.13.1
+uuid>=1.31
+
+# Utility packages
+requests>=2.31.1
+typing-extensions>=4.9.0
