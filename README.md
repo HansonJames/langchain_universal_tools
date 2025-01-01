@@ -136,7 +136,7 @@ All mind map files are saved in the `output/mindmap` directory.
 
 ## License
 
-MIT License
+Apache License
 
 ## Contributing
 
