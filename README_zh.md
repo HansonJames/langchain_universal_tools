@@ -16,6 +16,13 @@
 - 智能内容分析和组织
 - 简单易用的API接口
 
+### 3. 通用PPT工具
+- 自动生成专业演示文稿
+- DALL-E 3生成高质量配图
+- 实时集成市场数据
+- 专业的内容组织
+- 支持自定义页数和主题
+
 ## 安装
 
 ```bash
@@ -108,6 +115,47 @@ result = agent_executor.invoke({
 })
 ```
 
+### PPT工具
+
+```python
+from langchain_openai import ChatOpenAI
+from langchain.agents import AgentExecutor, create_openai_functions_agent
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.tools import StructuredTool
+from universal_ppt_tool import PPTGenerator
+
+# 初始化工具
+ppt_generator = PPTGenerator()
+tools = [
+    StructuredTool.from_function(
+        func=ppt_generator.generate_with_logging,
+        name="generate_ppt",
+        description="生成PPT的工具",
+    )
+]
+
+# 初始化语言模型
+llm = ChatOpenAI(
+    model_name="gpt-4o",
+    temperature=0
+)
+
+# 创建代理
+agent = create_openai_functions_agent(llm, tools, prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+# 生成PPT
+topic = "2025年的创业机遇"
+result = agent_executor.invoke({
+    "input": f"""请为我生成一个主题为"{topic}"的PPT，需要3页。要求：
+    1. 内容要全面且具有前瞻性
+    2. 包含最新的市场数据和趋势
+    3. 重点分析未来的创业方向
+    4. 配图要专业且美观
+    """
+})
+```
+
 ## 输出格式
 
 ### 邮件工具
@@ -123,6 +171,14 @@ result = agent_executor.invoke({
 - MindManager格式 (.mmap)
 
 所有思维导图文件都保存在`output/mindmap`目录下。
+
+### PPT工具
+- PowerPoint格式 (.pptx)
+- 专业的版式设计
+- DALL-E生成的配图
+- 数据驱动的内容
+
+所有PPT文件都保存在`output/ppt`目录下。
 
 ## 系统要求
 

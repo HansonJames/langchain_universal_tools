@@ -6,7 +6,7 @@ python-dotenv>=1.0.1
 pydantic>=2.10.4
 
 # Search functionality
-google-search-results>=2.4.3
+google-search-results==2.4.2
 
 # Email functionality
 imapclient>=3.0.0
@@ -16,8 +16,12 @@ html2text>=2024.1.1
 
 # XML and data handling
 xmltodict>=0.13.1
-uuid>=1.31
+uuid>=1.30
 
 # Utility packages
 requests>=2.31.1
 typing-extensions>=4.9.0
+
+# PPT generation
+python-pptx>=0.6.23
+Pillow>=10.0.0  # 用于图片处理
