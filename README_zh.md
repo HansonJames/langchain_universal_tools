@@ -168,7 +168,6 @@ result = agent_executor.invoke({
 - FreeMind格式 (.mm)
 - OPML格式 (.opml)
 - XMind格式 (.xmind)
-- MindManager格式 (.mmap)
 
 所有思维导图文件都保存在`output/mindmap`目录下。
 

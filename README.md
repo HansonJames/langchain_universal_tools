@@ -170,7 +170,6 @@ result = agent_executor.invoke({
 - FreeMind (.mm)
 - OPML (.opml)
 - XMind (.xmind)
-- MindManager (.mmap)
 
 All mind map files are saved in the `output/mindmap` directory.
 

@@ -210,38 +210,6 @@ class UniversalMindMapTool(BaseTool):
 
         return file_path
 
-    def _generate_mindmanager(self, main_topic: str, subtopics: List, output_dir: str) -> str:
-        """生成MindManager格式思维导图文件"""
-        root = ET.Element("map", version="1.0")
-        root.set("xmlns:ap", "http://schemas.mindjet.com/MindManager/Application/2003")
-        root.set("xmlns", "http://schemas.mindjet.com/MindManager/Map/2003")
-
-        center_node = ET.SubElement(root, "topic")
-        text = ET.SubElement(center_node, "text")
-        text.text = main_topic
-
-        def add_subtopics(parent_node, topics):
-            if not topics:
-                return
-            for topic in topics:
-                topic_node = ET.SubElement(parent_node, "topic")
-                text_node = ET.SubElement(topic_node, "text")
-                if isinstance(topic, dict):
-                    text_node.text = topic.get('name', '')
-                    if 'subtopics' in topic:
-                        add_subtopics(topic_node, topic['subtopics'])
-                else:
-                    text_node.text = str(topic)
-
-        add_subtopics(center_node, subtopics)
-
-        file_path = os.path.join(output_dir, f"{main_topic}.mmap")
-        xmlstr = xml.dom.minidom.parseString(ET.tostring(root)).toprettyxml(indent="  ")
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(xmlstr)
-
-        return file_path
-
     def _run(self, topic: str, requirements: str = None) -> Dict[str, str]:
         """生成思维导图
 
@@ -259,13 +227,10 @@ class UniversalMindMapTool(BaseTool):
         mm_path = self._generate_freemind(mindmap_data["main_topic"], mindmap_data["subtopics"], self.output_dir)
         opml_path = self._generate_opml(mindmap_data["main_topic"], mindmap_data["subtopics"], self.output_dir)
         xmind_path = self._generate_xmind(mindmap_data["main_topic"], mindmap_data["subtopics"], self.output_dir)
-        mmap_path = self._generate_mindmanager(mindmap_data["main_topic"], mindmap_data["subtopics"], self.output_dir)
-
         return {
             "freemind": mm_path,
-            "opml": opml_path,
-            "xmind": xmind_path,
-            "mindmanager": mmap_path
+            "opml": opml_path, 
+            "xmind": xmind_path
         }
 
     async def _arun(self, *args, **kwargs):

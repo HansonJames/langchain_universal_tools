@@ -7,29 +7,29 @@
     <outline text="主流编程语言对比分析">
       <outline text="底层实现">
         <outline text="C/C++">
-          <outline text="面向过程和面向对象"/>
+          <outline text="面向过程编程"/>
           <outline text="直接编译成机器码"/>
           <outline text="高效性能"/>
         </outline>
         <outline text="Java">
-          <outline text="基于JVM"/>
-          <outline text="字节码编译"/>
+          <outline text="面向对象编程"/>
+          <outline text="字节码运行于JVM"/>
           <outline text="跨平台特性"/>
         </outline>
         <outline text="Python">
           <outline text="解释型语言"/>
           <outline text="动态类型"/>
-          <outline text="易于扩展"/>
+          <outline text="高级数据结构"/>
+        </outline>
+        <outline text="C#">
+          <outline text="与.NET紧密集成"/>
+          <outline text="面向对象编程"/>
+          <outline text="跨平台支持"/>
         </outline>
         <outline text="Go">
           <outline text="编译型语言"/>
-          <outline text="静态类型"/>
           <outline text="并发支持"/>
-        </outline>
-        <outline text="C#">
-          <outline text="与.NET集成"/>
-          <outline text="面向对象"/>
-          <outline text="跨平台支持"/>
+          <outline text="简洁语法"/>
         </outline>
       </outline>
       <outline text="效率">
@@ -39,51 +39,46 @@
           <outline text="低级内存操作"/>
         </outline>
         <outline text="Java">
-          <outline text="垃圾回收机制"/>
+          <outline text="JIT编译提升性能"/>
+          <outline text="内存管理自动化"/>
           <outline text="适合企业级应用"/>
-          <outline text="性能优化工具"/>
         </outline>
         <outline text="Python">
-          <outline text="开发速度快"/>
-          <outline text="适合数据分析"/>
-          <outline text="性能较低"/>
-        </outline>
-        <outline text="Go">
-          <outline text="接近C++和Java"/>
-          <outline text="高并发处理"/>
-          <outline text="快速编译"/>
+          <outline text="开发效率高"/>
+          <outline text="适合快速原型"/>
+          <outline text="性能相对较低"/>
         </outline>
         <outline text="C#">
-          <outline text="高效开发"/>
-          <outline text="适合Windows应用"/>
-          <outline text="内存管理"/>
+          <outline text="高效开发工具"/>
+          <outline text="自动内存管理"/>
+          <outline text="适合Windows平台"/>
+        </outline>
+        <outline text="Go">
+          <outline text="快速编译"/>
+          <outline text="高效并发处理"/>
+          <outline text="适合云计算"/>
         </outline>
       </outline>
       <outline text="市场占有率">
         <outline text="Java">
           <outline text="广泛应用于企业"/>
           <outline text="全球开发者社区"/>
-          <outline text="稳定的市场份额"/>
+          <outline text="长期稳定"/>
         </outline>
         <outline text="Python">
-          <outline text="数据科学领域首选"/>
-          <outline text="快速增长"/>
-          <outline text="广泛的应用领域"/>
+          <outline text="数据科学首选"/>
+          <outline text="机器学习应用"/>
+          <outline text="增长迅速"/>
         </outline>
-        <outline text="C/C++">
-          <outline text="传统系统编程"/>
-          <outline text="嵌入式系统"/>
-          <outline text="稳定的用户群"/>
+        <outline text="C#">
+          <outline text="微软生态系统"/>
+          <outline text="企业应用开发"/>
+          <outline text="游戏开发"/>
         </outline>
         <outline text="Go">
           <outline text="新兴语言"/>
           <outline text="云计算领域"/>
           <outline text="增长潜力"/>
-        </outline>
-        <outline text="C#">
-          <outline text="微软生态系统"/>
-          <outline text="企业应用"/>
-          <outline text="稳定的市场份额"/>
         </outline>
       </outline>
       <outline text="社区活跃度">
@@ -95,49 +90,44 @@
         <outline text="Java">
           <outline text="成熟的开发者社区"/>
           <outline text="丰富的资源"/>
-          <outline text="定期更新"/>
-        </outline>
-        <outline text="C/C++">
           <outline text="长期支持"/>
-          <outline text="活跃的标准委员会"/>
-          <outline text="丰富的资源"/>
+        </outline>
+        <outline text="C#">
+          <outline text="微软支持"/>
+          <outline text="活跃的开发者论坛"/>
+          <outline text="丰富的学习资源"/>
         </outline>
         <outline text="Go">
           <outline text="快速增长的社区"/>
           <outline text="开源贡献"/>
-          <outline text="活跃的开发者"/>
-        </outline>
-        <outline text="C#">
-          <outline text="微软支持"/>
-          <outline text="活跃的开发者社区"/>
-          <outline text="丰富的资源"/>
+          <outline text="支持现代开发"/>
         </outline>
       </outline>
-      <outline text="开源项目">
-        <outline text="Python">
-          <outline text="广泛的开源项目"/>
-          <outline text="数据科学工具"/>
-          <outline text="Web开发框架"/>
+      <outline text="应用场景">
+        <outline text="C/C++">
+          <outline text="系统编程"/>
+          <outline text="游戏开发"/>
+          <outline text="嵌入式系统"/>
         </outline>
         <outline text="Java">
-          <outline text="企业级开源项目"/>
-          <outline text="Web应用框架"/>
-          <outline text="大数据工具"/>
+          <outline text="企业级应用"/>
+          <outline text="Android开发"/>
+          <outline text="Web应用"/>
         </outline>
-        <outline text="C/C++">
-          <outline text="系统级开源项目"/>
-          <outline text="游戏引擎"/>
-          <outline text="图形处理"/>
-        </outline>
-        <outline text="Go">
-          <outline text="云计算工具"/>
-          <outline text="网络服务"/>
-          <outline text="高性能项目"/>
+        <outline text="Python">
+          <outline text="数据分析"/>
+          <outline text="人工智能"/>
+          <outline text="Web开发"/>
         </outline>
         <outline text="C#">
-          <outline text="企业应用"/>
+          <outline text="桌面应用"/>
           <outline text="游戏开发"/>
           <outline text="Web服务"/>
+        </outline>
+        <outline text="Go">
+          <outline text="云服务"/>
+          <outline text="网络编程"/>
+          <outline text="微服务架构"/>
         </outline>
       </outline>
     </outline>
